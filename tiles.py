@@ -11,8 +11,7 @@ class Tile(Artifact):
 
 class Grass(Tile):
     def reward(self):
-        return 0
-        #return (-5 + 1000) / 2000
+        return -5
 
     @staticmethod
     def kind():
@@ -21,8 +20,7 @@ class Grass(Tile):
 
 class Mud(Tile):
     def reward(self):
-        return 0
-        #return (-50 + 1000) / 2000
+        return -50
 
     @staticmethod
     def kind():
@@ -31,8 +29,7 @@ class Mud(Tile):
 
 class Hole(Tile):
     def reward(self):
-        return 0
-        #return (-1000 + 1000) / 2000
+        return -1000
 
     @staticmethod
     def kind():

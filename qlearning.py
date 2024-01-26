@@ -1,23 +1,27 @@
-import random
 import numpy as np
 import pandas
+import random
 import seaborn
 from matplotlib import pyplot
 
 import config
 from environment import Environment, Action
 
+
 def linearize_pos(st, m):
     return m * st[0] + st[1]
+
 
 def get_optimal_action(q_tab, st, m):
     st = linearize_pos(st, m)
     return Action(np.argmax(q_tab[st]))
 
+
 def get_action_eps_greedy_policy(env: Environment, q_tab, st, eps):
     prob = random.uniform(0, 1)
     # if in exploitation return max index, else return random action if exploring
     return Action(np.argmax(q_tab[st])) if prob > eps else env.get_random_action()
+
 
 def train(num_episodes, max_steps, lr, gamma, eps_min, eps_max, eps_dec_rate, env: Environment):
     avg_returns = []
@@ -54,6 +58,7 @@ def train(num_episodes, max_steps, lr, gamma, eps_min, eps_max, eps_dec_rate, en
             st = new_st
     return q_tab, avg_returns, avg_steps
 
+
 def evaluate(num_episodes, max_steps, env: Environment, q_tab):
     ep_rew_lst = []
     steps_lst = []
@@ -83,6 +88,7 @@ def evaluate(num_episodes, max_steps, env: Environment, q_tab):
     print(f'TEST Mean reward: {np.mean(ep_rew_lst):.2f}')
     print(f'TEST STD reward: {np.std(ep_rew_lst):.2f}')
     print(f'TEST Mean steps: {np.mean(steps_lst):.2f}')
+
 
 def line_plot(data, name, show):
     pyplot.figure(f'Average {name} per episode: {np.mean(data):.2f}')

@@ -135,7 +135,5 @@ class Environment:
         reward = self.field_map[agent_position[0]][agent_position[1]].reward()
         done = (agent_position == self.artifacts_map[Goal.kind()].get_position() or
                 self.field_map[agent_position[0]][agent_position[1]].kind() == Hole.kind())
-        if done and agent_position == self.artifacts_map[Goal.kind()].get_position():
-            reward = 1
 
         return agent_position, reward, done
