@@ -5,7 +5,7 @@ import config
 import qlearning
 from environment import Environment, Quit
 
-environment = Environment(f'maps/map2.txt')
+environment = Environment(f'maps/map.txt')
 running = True
 
 
@@ -17,7 +17,7 @@ def render_env():
 if __name__ == '__main__':
     try:
         q_tab, avg_returns, avg_steps = qlearning.train(7000, 100, 0.05,
-                                                        0.95, 0.005, 1, 0.001, environment)
+                                                        1, 0.005, 1, 0.001, environment)
         qlearning.evaluate(100, 100, environment, q_tab)
         qlearning.line_plot(avg_returns, "return", True)
         qlearning.line_plot(avg_steps, "steps", True)
